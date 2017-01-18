@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>FragMag 2017</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/card.css" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/form.mini.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/main.js"></script>
+    <style type="text/css">
+        .row{
+              margin-right: 0px;
+              margin-left: 0px;
+        }
+
+        .heading {
+          margin-top:260px;
+          margin-bottom:260px;
+          font-size: 75px;
+        }
+
+        .fullscreen-bg {
+          position: fixed;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          overflow: hidden;
+          z-index: -100;
+        }
+
+        .fullscreen-bg__video {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+        }
+
+        @media (min-aspect-ratio: 16/9) {
+          .fullscreen-bg__video {
+            height: 300%;
+            top: -100%;
+          }
+        }
+
+        @media (max-aspect-ratio: 16/9) {
+          .fullscreen-bg__video {
+            width: 300%;
+            left: -100%;
+          }
+        }
+
+        @media (max-width: 767px) {
+          .fullscreen-bg {
+            background: url('img/videoframe.jpg') center center / cover no-repeat;
+          }
+
+        .heading {
+          margin-top:260px;
+          margin-bottom:260px;
+          font-size: 50px;
+        }
+
+          .fullscreen-bg__video {
+            display: none;
+          }
+        }
+    </style>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body ng-app="fragmag">
+
+<video style="z-index: -30000;" class="fullscreen-bg" id="my-video-ripples" poster="img/start.jpg" autoplay loop muted>
+     <source src="img/bg.mp4" type="video/mp4">
+</video>
+
+
+
+      <span><center class="heading wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;"> Fragmag 2017<br>Ripples</center> </span>
+          <div class="row container">
+
+            <div class="col-md-6 col-lg-6">
+              <div class="card">
+                <div class="embed-responsive embed-responsive-16by9 card-img-top">
+                  <iframe  src="https://www.youtube.com/embed/G5ihMGQQUjE" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <div class="card-block">
+                  <p class="card-text">1. The articles can comprise of stories, poems, songs, etc. but must be based on the theme which is "Ripples".</p>
+                  <p class="card-text">2. The articles can written in English, Hindi or Marathi.</p>
+                  <p class="card-text">3. Please submit the articles as .doc or .docx file.</p>
+                  <p class="card-text">4. Hindi and Marathi articles can be hand-written in which case directly hand them over to any member of the Editorial team.</p>
+                  <p class="card-text">5. The Technical articles do not have to be in line with the theme and can be based on absolutely any topic.</p>
+                  <p class="card-text">6. You can also send your art- paintings, sketches, photographs, etc., however please make sure that the file size is less than 25 MB.</p>
+                  <p class="card-text">7. One can send multiple articles or art.</p>
+                  <p class="card-text">8. Please make a note that articles copied from any sources shall be rejected immediately as the Editorial team deploys a state-of-the-art plagiarism test.</p>
+                  <p class="card-text">9. If found guilty of plagiarism, no further articles shall be entertained.</p>
+                </div>
+              </div>
+            </div>
+
+
+
+
+
+
+            <div class="col-md-6">
+                  <!--start of form-->
+                    <div class="card ">
+                      <div class="card-header">
+                          Upload Your Articles
+                      </div>
+
+                      <div class="card-block" ng-controller="formUploader">
+                        <p class="card-text">
+                        <div id="status"></div>
+                          <form name="fragmagForm" id="fragmagForm" enctype="multipart/form-data" action="upload.php" method="POST">
+                            <div class="form-group">
+                              <label for="fname">Name</label>
+                              <input type="text" class="form-control" id="fname"  name="fname" ng-model="fname" placeholder="Your Name" required>
+                              <p class="help-block">
+                                  <span style="color: red;">
+                                    <span ng-show="fragmagForm.fname.$error.required && fragmagForm.fname.$dirty">Enter your name</span>
+                                  </span>
+                              </p>
+                            </div>
+                            <div class="form-group">
+                              <label for="email">Email</label>
+                              <input type="email" class="form-control" id="email" name="email" ng-model="email" placeholder="Email Address" required>
+                              <p class="help-block">
+                                  <span style="color: red;">
+                                    <span ng-show="fragmagForm.email.$error.email && fragmagForm.email.$dirty">Enter a valid email ID</span>
+                                    <span ng-show="fragmagForm.email.$error.required && fragmagForm.email.$dirty">Email ID is required</span>
+                                  </span>
+                              </p>
+                            </div>
+                             <div class="form-group">
+                                    <label for="year">Select Year</label>
+                                    <select class="form-control" name="year" id="year">  
+                                        <option value="FE">FE</option>
+                                        <option value="SE">SE</option>
+                                        <option value="TE">TE</option>
+                                        <option value="BE">BE</option>
+                                        <option value="staff">Staff</option>
+                                        <option value="alumni">Alumni</option>
+                                    </select>
+                            </div>
+                             <div class="form-group">
+                                    <label for="div">Select Division</label>
+                                    <select class="form-control" name="div" id="div">  
+                                        <option value="CS">Computer Science</option>
+                                        <option value="IT">Information Technology</option>
+                                        <option value="PROD">Production Technology</option>
+                                        <option value="ELEX">Electronic Technology</option>
+                                        <option value="HRD">Humanities &amp; Service</option>
+                                    </select>
+                            </div>
+                             <div class="form-group">
+                                    <label for="cat">Select Category</label>
+                                    <select class="form-control" name="cat" id="cat">  
+                                        <option value="ENG">English</option>
+                                        <option value="HIN">Hindi</option>
+                                        <option value="MAR">Marathi</option>
+                                        <option value="TECH">Technical</option>
+                                    </select>
+                            </div>
+                            <div class="form-group">
+                              <label for="ufile">Article File</label>
+                              <input type="file" id="ufile" class="form-control"  name="ufile" ng-model="ufile" >
+                              <p class="help-block">
+                                  <span style="color: green;">
+                                    <span>Support file extension is doc,docx,pdf</span>
+                                  </span>
+                              </p>
+                            </div>
+                            <button type="submit" ng-disabled="fragmagForm.fname.$invalid || fragmagForm.email.$invalid || fragmagForm.ufile.$invalid  " class="btn btn-success" name="upload" value="upload">Submit Article</button>
+                            <button type="reset" ng-click="reset()"class="btn btn-danger">Reset</button>
+                          </form>
+                          <br>
+                          <div class="progress">
+                            <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:40%"><span class="sr-only"></span>
+                            </div>
+                          </div>
+                        </p>
+                      </div>
+                  </div>
+                  <!--end of from-->
+            </div>
+          </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) ---->
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
